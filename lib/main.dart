@@ -1,42 +1,46 @@
 import 'package:flutter/material.dart';
 
-void main() => runApp(MyApp());
+void main() {
+  runApp(MiExamen());
+}
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-  // This widget is the root of your application.
+class MiExamen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      // Application name
-      title: 'Flutter Hello World',
-      // Application theme data, you can set the colors for the application as
-      // you want
-      theme: ThemeData(
-        // useMaterial3: false,
-        primarySwatch: Colors.blue,
-      ),
-      // A widget which will be started on application startup
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      debugShowCheckedModeBanner: false,
+      home: ListViewExample(),
     );
   }
 }
 
-class MyHomePage extends StatelessWidget {
-  final String title;
-  const MyHomePage({super.key, required this.title});  
-
+class ListViewExample extends StatelessWidget {
+  final List<Map<String, dynamic>> items = [
+    {'icon': Icons.directions_bike, 'text': 'bike'},
+    {'icon': Icons.directions_boat, 'text': 'boat'},
+    {'icon': Icons.directions_bus, 'text': 'bus'},
+    {'icon': Icons.directions_car, 'text': 'car'},
+    {'icon': Icons.directions_railway, 'text': 'railway'},
+    {'icon': Icons.directions_run, 'text': 'run'},
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        // The title text which will be shown on the action bar
-        title: Text(title),
+        title:
+            Text('ListViews Loya 1244', style: TextStyle(color: Colors.white)),
+        backgroundColor: Colors.teal,
       ),
-      body: Center(
-        child: Text(
-          'Hello, World!',
-        ),
+      body: ListView.builder(
+        itemCount: items.length,
+        itemBuilder: (context, index) {
+          return Card(
+            child: ListTile(
+              leading: Icon(items[index]['icon'], color: Colors.grey),
+              title: Text(items[index]['text']),
+            ),
+          );
+        },
       ),
     );
   }
